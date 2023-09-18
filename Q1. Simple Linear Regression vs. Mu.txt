@@ -1,93 +1,81 @@
-Q1. **Simple Linear Regression vs. Multiple Linear Regression:**
+Q1. R-squared, also known as the coefficient of determination, is a statistical measure used to assess the goodness of fit of a linear regression model. It represents the proportion of the variance in the dependent variable (the target) that can be explained by the independent variables (predictors) in the model. In other words, it quantifies how well the model fits the observed data.
 
-- **Simple Linear Regression:** Simple linear regression is a statistical method used to model the relationship between a single independent variable (predictor) and a dependent variable (response). The relationship is assumed to be linear, meaning that changes in the independent variable are associated with a constant change in the dependent variable. The model equation is typically represented as Y = a + bX, where Y is the dependent variable, X is the independent variable, 'a' is the intercept, and 'b' is the slope.
+R-squared is calculated using the formula:
+\[R^2 = 1 - \frac{SSR}{SST}\]
+where:
+- SSR (Sum of Squared Residuals) is the sum of the squared differences between the actual values and the predicted values by the model.
+- SST (Total Sum of Squares) is the sum of the squared differences between the actual values and the mean of the dependent variable.
 
-    Example: Predicting a student's exam score (Y) based on the number of hours they studied (X).
+R-squared values range from 0 to 1, with higher values indicating a better fit. A value of 1 means that the model explains all the variance in the data, while a value of 0 means that the model doesn't explain any of the variance.
 
-- **Multiple Linear Regression:** Multiple linear regression extends simple linear regression to model the relationship between a dependent variable and multiple independent variables. It assumes a linear relationship but considers the impact of each independent variable on the dependent variable while holding the others constant. The model equation becomes Y = a + b1X1 + b2X2 + ... + bnXn, where Y is the dependent variable, X1, X2, ..., Xn are independent variables, 'a' is the intercept, and b1, b2, ..., bn are the slopes.
+Q2. Adjusted R-squared is a modified version of R-squared that accounts for the number of predictors (independent variables) in the model. It penalizes the addition of unnecessary variables that do not improve the model's fit. Unlike regular R-squared, which tends to increase as more predictors are added, adjusted R-squared can decrease if adding a new variable doesn't significantly improve the model's performance.
 
-    Example: Predicting a house's price (Y) based on factors like square footage (X1), number of bedrooms (X2), and location (X3).
+The formula for adjusted R-squared is:
+\[Adjusted \ R^2 = 1 - \frac{(1 - R^2) \cdot (n - 1)}{n - k - 1}\]
+where:
+- \(R^2\) is the regular R-squared.
+- \(n\) is the number of observations.
+- \(k\) is the number of predictors in the model.
 
-Q2. **Assumptions of Linear Regression:**
+Adjusted R-squared provides a more realistic assessment of a model's goodness of fit when you are comparing models with different numbers of predictors.
 
-The key assumptions of linear regression are:
-1. **Linearity:** The relationship between independent and dependent variables is linear.
-2. **Independence:** Residuals (the differences between observed and predicted values) are independent of each other.
-3. **Homoscedasticity:** Residuals have constant variance across all levels of the independent variables.
-4. **Normality:** Residuals follow a normal distribution.
-5. **No Multicollinearity:** Independent variables are not highly correlated with each other.
+Q3. Adjusted R-squared is more appropriate when you are comparing regression models with different numbers of predictors. It helps you select the model that strikes a balance between goodness of fit and model complexity. A higher adjusted R-squared indicates that the model explains more variance relative to its complexity. So, if you want to avoid overfitting and select a more parsimonious model, you should use adjusted R-squared for model selection.
 
-To check these assumptions, you can perform diagnostic tests like scatterplots for linearity, residual plots for homoscedasticity, Q-Q plots for normality, and correlation matrices for multicollinearity. Additionally, hypothesis tests and statistical measures can help assess the assumptions.
+Q4. In the context of regression analysis:
 
-Q3. **Interpreting Slope and Intercept:**
+- **RMSE (Root Mean Squared Error)** is a metric that measures the average magnitude of the residuals (differences between actual and predicted values) while taking into account their squared values. It is calculated as the square root of the mean of squared residuals.
+  
+- **MSE (Mean Squared Error)** is similar to RMSE but does not take the square root, making it sensitive to large errors. It's calculated as the mean of squared residuals.
+  
+- **MAE (Mean Absolute Error)** measures the average magnitude of the absolute differences between actual and predicted values. It is less sensitive to outliers compared to RMSE and MSE.
 
-- **Slope (b):** It represents the change in the dependent variable for a one-unit change in the independent variable while holding all other variables constant. A positive slope indicates a positive relationship, and a negative slope indicates a negative relationship.
+These metrics help assess the accuracy and performance of a regression model, with lower values indicating better performance.
 
-- **Intercept (a):** It represents the value of the dependent variable when all independent variables are set to zero. It's the starting point of the regression line.
-
-Example: In a salary prediction model, if the slope for years of experience is 2.5 and the intercept is $40,000, it means that for each additional year of experience (holding other factors constant), a person's salary is expected to increase by $2,500, and someone with zero years of experience is expected to earn $40,000.
-
-Q4. **Gradient Descent:**
-
-Gradient descent is an optimization algorithm used in machine learning to minimize the cost or loss function of a model. It works by iteratively adjusting model parameters (weights and biases) to find the values that minimize the cost function. The core idea is to compute the gradient of the cost function with respect to the model parameters and update the parameters in the opposite direction of the gradient to reach a minimum.
-
-Gradient descent is used in training various machine learning models, including linear regression, neural networks, and deep learning models. It helps the model learn the optimal parameters by adjusting them step by step based on the error between predictions and actual outcomes.
-
-Q5. **Multiple Linear Regression:**
-
-Multiple linear regression is a statistical method used to model the relationship between a dependent variable and multiple independent variables. It allows you to assess how each independent variable contributes to the variation in the dependent variable while controlling for the effects of other variables. The model equation is:
-
-Y = a + b1X1 + b2X2 + ... + bnXn
-
-Where:
-- Y is the dependent variable.
-- X1, X2, ..., Xn are independent variables.
-- 'a' is the intercept.
-- b1, b2, ..., bn are the slopes for each independent variable.
-
-The key difference from simple linear regression is the inclusion of multiple independent variables, allowing for a more comprehensive analysis of the relationships between variables.
-
-Q6. **Multicollinearity in Multiple Linear Regression:**
-
-Multicollinearity refers to a situation in multiple linear regression when two or more independent variables are highly correlated with each other. It can cause issues in the model, including unstable coefficient estimates and difficulty in interpreting the importance of individual predictors.
-
-To detect multicollinearity, you can:
-- Calculate correlation coefficients between independent variables.
-- Use variance inflation factor (VIF) calculations. High VIF values indicate multicollinearity.
-- Visualize correlation matrices or scatterplots.
-
-To address multicollinearity, you can:
-- Remove one of the highly correlated variables.
-- Combine correlated variables into a single variable.
-- Use dimensionality reduction techniques like principal component analysis (PCA).
-
-Q7. **Polynomial Regression:**
-
-Polynomial regression is an extension of linear regression that allows for modeling nonlinear relationships between the independent and dependent variables. Instead of fitting a straight line, polynomial regression fits a polynomial curve to the data. The model equation is:
-
-Y = a + b1X + b2X^2 + ... + bnX^n
-
-Where:
-- Y is the dependent variable.
-- X is the independent variable.
-- 'a' is the intercept.
-- b1, b2, ..., bn are coefficients for each term of the polynomial.
-
-Polynomial regression can capture more complex relationships in the data, making it suitable when the linear assumption in simple linear regression is inadequate.
-
-Q8. **Advantages and Disadvantages of Polynomial Regression:**
+Q5. Advantages and disadvantages of these metrics in regression analysis:
 
 Advantages:
-- Can model complex, nonlinear relationships.
-- Provides a better fit to the data when the relationship isn't linear.
-- Flexible and versatile for various data patterns.
+- **RMSE** and **MSE** give higher weight to larger errors, making them useful when large errors are critical.
+- **MAE** is more robust to outliers, providing a better representation of the typical error.
 
 Disadvantages:
-- Can overfit the data, leading to poor generalization.
-- The choice of the polynomial degree is subjective and can affect results.
-- Interpretation of coefficients becomes more challenging with higher-degree polynomials.
+- **RMSE** and **MSE** are sensitive to outliers and penalize them heavily.
+- **MAE** may not emphasize the importance of larger errors, which could be crucial in some applications.
+- The choice of metric should be based on the specific problem and the importance of different types of errors.
 
-Use Polynomial Regression:
-- When there is clear evidence of a nonlinear relationship.
-- For exploratory data analysis to understand complex patterns.
-- In cases where a linear model doesn't capture the underlying phenomenon well.
+Q6. Lasso regularization is a technique used in linear regression to prevent overfitting by adding a penalty term to the linear regression equation. Lasso stands for "Least Absolute Shrinkage and Selection Operator." It differs from Ridge regularization in the type of penalty it applies. In Lasso regularization, the penalty term added to the cost function is the absolute sum of the coefficients multiplied by a regularization parameter (alpha).
+
+The key differences between Lasso and Ridge regularization are:
+- Lasso tends to produce sparse models by driving some coefficients to exactly zero, effectively selecting a subset of the most important features. Ridge tends to shrink coefficients towards zero but rarely makes them exactly zero.
+- Lasso is useful for feature selection, as it can automatically exclude irrelevant predictors from the model.
+
+The choice between Lasso and Ridge regularization depends on the problem and the desired properties of the model.
+
+Q7. Regularized linear models, like Lasso and Ridge, help prevent overfitting by adding a penalty term to the linear regression cost function. This penalty discourages the model from fitting noise in the data by penalizing large coefficients. Here's an example:
+
+Imagine you have a linear regression model with many predictors, some of which are noise and not related to the target variable. Without regularization, the model might assign substantial coefficients to these noise predictors, leading to overfitting. When you introduce Lasso or Ridge regularization, the penalty term encourages the model to shrink the coefficients of these irrelevant predictors towards zero. As a result, the model becomes more parsimonious and less prone to overfitting, as it focuses on the most important predictors.
+
+Q8. Limitations of regularized linear models:
+
+1. **Feature Selection Bias**: Lasso can lead to feature selection, which is advantageous for reducing model complexity but may exclude potentially relevant features if not used judiciously.
+
+2. **Tuning Complexity**: Choosing the right regularization parameter (alpha) can be challenging, and it requires cross-validation or other techniques.
+
+3. **Assumption of Linearity**: Regularized linear models assume a linear relationship between predictors and the target variable, which may not hold in all cases.
+
+4. **Interpretability**: As coefficients are penalized and can be driven to zero, the interpretability of the model may be compromised.
+
+5. **Not Suitable for Highly Correlated Predictors**: Ridge and Lasso may not perform well when predictors are highly correlated because they tend to distribute the penalty across correlated variables.
+
+6. **Limited to Linear Relationships**: Regularized linear models may not capture complex nonlinear relationships in the data.
+
+Q9. Choosing between RMSE and MAE depends on the specific context and the importance of different types of errors. 
+
+- If you want to give more weight to larger errors and consider them more critical, you should choose **RMSE**. In this case, Model A with an RMSE of 10 might be preferred if the magnitude of errors is a significant concern.
+
+- If you want a metric that is more robust to outliers and treats all errors equally, you should choose **MAE**. In this case, Model B with an MAE of 8 might be preferred because it has smaller errors on average, which may be more desirable in some situations.
+
+It's important to consider the domain and application-specific requirements when selecting the evaluation metric. There are no universal rules, and the choice should align with the goals of the analysis.
+
+Q10. The choice between Ridge and Lasso regularization depends on the specific problem and the desired properties of the model:
+
+- **Model A (Ridge regularization with a regularization parameter of 0.1)** would be preferred if you want to maintain
