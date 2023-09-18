@@ -1,0 +1,26 @@
+Q1. Lasso Regression, short for Least Absolute Shrinkage and Selection Operator Regression, is a linear regression technique used for both prediction and feature selection. It differs from other regression techniques, such as ordinary least squares (OLS) regression and Ridge Regression, in the way it adds a regularization term to the linear regression equation. This regularization term penalizes the absolute values of the coefficients, which encourages the model to set some coefficients to exactly zero. This makes Lasso Regression capable of feature selection by effectively eliminating less important features from the model.
+
+Q2. The main advantage of using Lasso Regression in feature selection is its ability to automatically select a subset of the most relevant features while setting the coefficients of less important features to zero. This feature selection process simplifies the model, reduces overfitting, and can lead to a more interpretable and efficient model.
+
+Q3. The coefficients of a Lasso Regression model can be interpreted in the following way:
+   - Coefficients that are not zero indicate the strength and direction of the relationship between the corresponding feature and the target variable.
+   - Coefficients that are exactly zero indicate that the corresponding feature has been eliminated from the model and does not contribute to the prediction.
+
+Q4. Lasso Regression has a tuning parameter called "lambda" (λ) or "alpha" (α) that controls the strength of the regularization penalty. The main tuning parameter is λ, which can be adjusted to control the amount of regularization applied. 
+   - A smaller λ allows for less regularization, which may lead to overfitting.
+   - A larger λ increases the amount of regularization, which may result in simpler models with fewer features and reduced risk of overfitting.
+
+Q5. Lasso Regression is primarily designed for linear regression problems, which means it is suited for linear relationships between features and the target variable. However, it can be used for non-linear regression problems by first applying transformations to the input features to make them more linear. For example, you can use polynomial features or other non-linear transformations before applying Lasso Regression.
+
+Q6. The main difference between Ridge Regression and Lasso Regression is the type of regularization they use:
+   - Ridge Regression adds a penalty term that penalizes the sum of the squared coefficients (L2 regularization). It tends to shrink all coefficients towards zero, but none are exactly zero.
+   - Lasso Regression adds a penalty term that penalizes the absolute values of the coefficients (L1 regularization). It can set some coefficients to exactly zero, effectively performing feature selection.
+
+Q7. Yes, Lasso Regression can handle multicollinearity in the input features. Multicollinearity occurs when two or more features in the dataset are highly correlated. Lasso's L1 regularization can set one of the correlated features' coefficients to zero, effectively choosing one of them while ignoring the others. This helps in dealing with multicollinearity by automatically selecting the most relevant features and reducing redundancy.
+
+Q8. To choose the optimal value of the regularization parameter (λ) in Lasso Regression, you typically use techniques like cross-validation. The process involves the following steps:
+   - Create a range of λ values, often on a logarithmic scale.
+   - For each λ value, perform k-fold cross-validation (usually with k=5 or 10) on your training data.
+   - Calculate the average error (e.g., mean squared error) for each λ.
+   - Select the λ that results in the lowest average error on the validation sets as the optimal regularization parameter.
+   - Finally, train the Lasso Regression model with the selected λ on the entire training dataset for the best model performance.
